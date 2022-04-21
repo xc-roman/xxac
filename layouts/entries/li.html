@@ -1,0 +1,21 @@
+<article class="post">
+    <header class="post__header">
+        <h2><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
+        <p class="post__meta">
+            {{ with .Param "employees" }}
+                Employee{{ if gt (len .) 1 }}s{{ end }}
+                {{ range $index, $employee := . }}
+                    {{- if gt $index 0 }} & {{ end -}}
+                    {{ with $.Site.GetPage (printf "/%s/%s" "employees" $employee) -}}
+                        <a href="{{ .Permalink }}">{{ $employee }}</a>
+                    {{- end -}}
+                {{- end -}}
+            {{ end }},
+            <span class="date">{{ .Date.Format "2 January 2006" }}</span>
+        </p>
+    </header>
+
+    <section class="post__summary">
+        > {{ .Summary }}
+    </section>
+</article>

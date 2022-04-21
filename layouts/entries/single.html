@@ -1,0 +1,30 @@
+{{ define "main" }}
+    <header class="content__header">
+        <h1>{{ .Title | markdownify }}</h1>
+    </header>
+    <div class="content__body">
+        {{ .Content }}
+    </div>
+    <footer class="content__footer"></footer>
+{{ end }}
+
+{{define "aside" }}
+    {{ if .Params.description }}<p>{{ .Params.description }}</p>{{ end }}
+    {{ if or (.Params.employees) (.Params.date) }}
+        <p>
+            {{ if .Params.employees }}
+                {{ with .Param "employees" }}
+                    Employee{{ if gt (len .) 1 }}s{{ end }}
+                    {{ range $index, $employee := . }}
+                        {{- if gt $index 0 }} & {{ end -}}
+                        {{ with $.Site.GetPage (printf "/%s/%s" "employees" $employee) -}}
+                            <a href="{{ .Permalink }}">{{ $employee }}</a>
+                        {{- end -}}
+                    {{- end -}}
+                {{ end -}}
+                {{ if .Date }}, {{ end }}
+            {{ end }}
+            {{ if .Date }}{{ .Date.Format "2006-01-02" }}{{ end }}
+        </p>
+    {{ end }}
+{{ end }}

@@ -1,0 +1,26 @@
+{{ define "main" }}
+    <header class="content__header">
+        <h1>
+            {{- if gt (len .Title) 0 -}}
+                {{ .Title | markdownify }}
+            {{- else -}}
+            {{ with .File }}
+                Entries for {{ path.Base .Dir | upper }}
+            {{ end }}
+            {{- end -}}
+        </h1>
+    </header>
+
+    {{ if eq .Title "Entries" }}
+        {{ range where (where .Site.Pages "Section" "==" "entries") "Kind" "==" "page" }}
+        {{ .Render "li" }}
+        {{ end }}
+    {{ else }}
+        {{ with .File }}
+            {{ $name := path.Base .Dir }}
+            {{ range (index $.Site.Taxonomies.employees $name) }}
+            {{ .Render "li" }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}

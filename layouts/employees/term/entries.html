@@ -1,0 +1,11 @@
+<h2>Recent log entries</h2>
+
+<ul>
+{{ range first 5 .Pages }}
+    <li>{{ .Date.Format "2006-01-02" }} / <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></li>
+{{ end }}
+</ul>
+
+{{ with .Site.GetPage (printf "entries/%s" .Title) }}
+    <a href="{{ .Permalink }}">all entries &raquo;</a>
+{{ end }}

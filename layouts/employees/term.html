@@ -1,0 +1,11 @@
+{{ define "main" }}
+    <h1 id="{{ .Title | urlize }}">{{ .Title | markdownify }}</h1>
+    {{ .Content }}
+
+    {{ .Render "term/entries" }}
+    {{ .Render "term/gallery" }}
+{{ end }}
+
+{{ define "aside" }}
+    {{ .Render "term/datasheet" }}
+{{ end }}

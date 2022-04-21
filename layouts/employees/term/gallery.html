@@ -1,0 +1,24 @@
+<h2>CCTV captures</h2>
+
+{{ $resourceDir := (printf "img/drones/gallery/%s" .Title) }}
+{{ $absoluteDir := (printf "assets/%s" $resourceDir) }}
+{{ if fileExists $absoluteDir}}
+    <div class="gallery">
+        {{ range sort (readDir $absoluteDir) "Name" "desc" }}
+            {{ $img := resources.Get (printf "%s/%s" $resourceDir .Name) }}
+            {{ $imgDesktopOptimised := $img.Fill "250x250 webp drawing q90 smart" }}
+            {{ $imgMobileOptimised := $img.Fill "130x130 webp drawing q75 smart" }}
+            <div>
+                <a href="{{ $img.Permalink }}">
+                    <picture>
+                        <source srcset="{{ $imgDesktopOptimised.Permalink }}" media="(min-width: 45rem)"/>
+                        <source srcset="{{ $imgMobileOptimised.Permalink }}" media="(max-width: 45rem)"/>
+                        <img src="{{ $imgDesktopOptimised.Permalink }}" />
+                    </picture>
+                </a>
+            </div>
+        {{ end }}
+    </div>
+{{ else }}
+    <p>No data available.</p>
+{{ end }}

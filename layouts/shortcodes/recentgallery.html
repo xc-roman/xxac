@@ -1,0 +1,53 @@
+{{ $resourceDir := "img/drones/gallery" }}
+{{ $.Scratch.Set "files" slice }}
+{{ $.Scratch.Set "currentPath" $resourceDir }}
+
+{{ if fileExists (printf "assets/%s" $resourceDir) }}
+    {{ template "readDirRecurse" . }}
+{{ end }}
+
+<h2>Recent CCTV captures</h2>
+
+{{ $files := $.Scratch.Get "files" }}
+{{ if gt (len $files) 0}}
+    <div class="gallery">
+        {{ range first 6 (sort $files "file.Name" "desc") }}
+            {{ $img := resources.Get .path }}
+            {{ $imgDesktopOptimised := $img.Fill "250x250 webp drawing q90 smart" }}
+            {{ $imgMobileOptimised := $img.Fill "130x130 webp drawing q75 smart" }}
+            <div>
+                <a href="{{ $img.Permalink }}">
+                    <picture>
+                        <source srcset="{{ $imgDesktopOptimised.Permalink }}" media="(min-width: 45rem)"/>
+                        <source srcset="{{ $imgMobileOptimised.Permalink }}" media="(max-width: 45rem)"/>
+                        <img src="{{ $imgDesktopOptimised.Permalink }}" />
+                    </picture>
+                </a>
+            </div>
+        {{ end }}
+    </div>
+{{ else }}
+    <p>No data avilable.</p>
+{{ end }}
+
+{{ define "readDirRecurse" }}
+    {{ $currentPath := $.Scratch.Get "currentPath" }}
+    {{ $outerState := . }}
+    
+    {{ $files := readDir (printf "/assets/%s" $currentPath) }}
+    {{ range $files }}
+        
+        {{ $fstat := os.Stat (printf "/assets/%s/%s" $currentPath .Name ) }}
+        {{ $filePath := printf "%s/%s" $currentPath .Name }}
+        
+        {{ if $fstat.IsDir }}
+            {{/* Continue traversing directories */}}
+            
+            {{ $.Scratch.Set "currentPath" $filePath }}
+            {{ template "readDirRecurse" $outerState }}
+        {{ else }}
+            {{ $.Scratch.Set "files" ($.Scratch.Get "files" | append (dict "file" . "path" $filePath)) }}
+        {{ end }}
+    
+    {{ end }}
+{{ end }}

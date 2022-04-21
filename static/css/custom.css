@@ -1,0 +1,30 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1.5rem 0 0.5rem;
+}
+
+.post .post__meta {
+  margin: 0 0 0.5rem;
+}
+
+.advertisement {
+  display: none;
+}
+
+.gallery {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px 10px;
+
+  justify-items: center;
+  align-items: center;
+}
+
+.gallery img {
+  border: 2px solid var(--white);
+}

@@ -1,0 +1,10 @@
+<li>
+    <a href="{{ .Permalink }}">
+        {{ .Title }}
+        {{ with $data := index $.Site.Data.employees .Title }}
+            {{ if isset . "designation" }}
+                ({{ .designation }})
+            {{ end }}
+        {{ end }}
+    </a>
+</li>

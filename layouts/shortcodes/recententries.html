@@ -1,0 +1,22 @@
+<h2>Recent log entries</h2>
+
+<ul>
+    {{ range first 4 (where (where .Site.Pages "Section" "==" "entries") "Kind" "==" "page") }}
+        <li>
+            {{ .Date.Format "2006-01-02" }} /
+            {{ with .Param "employees" }}
+                {{ range $index, $employee := . }}
+                    {{- if gt $index 0 }} & {{ end -}}
+                    {{ with $.Site.GetPage (printf "/%s/%s" "employees" $employee) -}}
+                        <a href="{{ .Permalink }}">{{ $employee }}</a>
+                    {{- end -}}
+                {{- end -}}
+            {{ end }} /
+            <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+        </li>
+    {{ end }}
+</ul>
+
+{{ with .Site.GetPage "entries" }}
+    <a href="{{ .Permalink }}">all entries &raquo;</a>
+{{ end }}

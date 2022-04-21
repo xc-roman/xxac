@@ -1,0 +1,6 @@
+{{ $img := resources.Get (.Get 0)}}
+{{ $imgPageOptimised := $img.Resize "760x webp drawing q90" }}
+
+<a href="{{ $img.Permalink }}">
+  <img src="{{ $imgPageOptimised.Permalink }}" />
+</a>

@@ -9,5 +9,27 @@
             <dt>Designation</dt>
             <dd>{{ . }}</dd>
         {{ end }}
+
+        {{ with $data.title }}
+            <dt>Title</dt>
+            <dd>{{ . }}</dd>
+        {{ end }}
+
+        {{ with $data.clearance }}
+            <dt>Clearance</dt>
+            <dd>{{ . }}</dd>
+        {{ end }}
+
+        {{ with $data.species }}
+            <dt>Species</dt>
+            <dd>{{ . }}</dd>
+        {{ end }}
+
+        {{ with $data.symbiote }}
+        {{ with $.Site.GetPage (printf "employees/%s" .) }}
+            <dt>Symbiote</dt>
+            <dd><a href="{{ .Permalink }}">{{ .Title }}</a></dd>
+        {{ end }}
+        {{ end }}
     {{ end }}
 </dl>

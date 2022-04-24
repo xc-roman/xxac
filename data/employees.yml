@@ -1,5 +1,8 @@
-A117:
-  rank: A
 X001:
+  clearance: X
   designation: Roman
-  rank: X
+  title: Founder
+  species: Human
+A117:
+  clearance: A
+  title: Administrative assistant

@@ -1,0 +1,43 @@
+X:
+  name: Founder
+  access:
+    - TopSecret
+    - Secret
+    - Confidential
+    - Restricted
+    - Sensitive
+    - InConfidence
+    - Unclassified
+A:
+  name: Administrative
+  access:
+    - Secret
+    - Confidential
+    - Restricted
+    - Sensitive
+    - InConfidence
+    - Unclassified
+R:
+  name: Research
+  access:
+    - Confidential
+    - Restricted
+    - Sensitive
+    - InConfidence
+    - Unclassified
+D:
+  name: Drone
+  access:
+    - Restricted
+    - Sensitive
+    - InConfidence
+    - Unclassified
+G:
+  name: Generic
+  access:
+    - InConfidence
+    - Unclassified
+C:
+  name: Civic
+  access:
+    - Unclassified

@@ -11,6 +11,13 @@ h6 {
   margin: 0 0 0.5rem;
 }
 
+.post__summary::before {
+  content: ">";
+  color: #888;
+  float: left;
+  padding-right: 12px;
+}
+
 .advertisement {
   display: none;
 }

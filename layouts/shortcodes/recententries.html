@@ -5,8 +5,15 @@
         <li>
             {{ .Date.Format "2006-01-02" }} /
             {{ with .Param "employees" }}
+                {{ $employeeCount := len . }}
                 {{ range $index, $employee := . }}
-                    {{- if gt $index 0 }} & {{ end -}}
+                    {{- if gt $index 0 -}}
+                        {{- if lt (add $index 1) $employeeCount -}}
+                            ,
+                        {{ else -}}
+                            {{ if gt $employeeCount 2 }},{{ end }} &
+                        {{ end -}}
+                    {{- end -}}
                     {{ with $.Site.GetPage (printf "/%s/%s" "employees" $employee) -}}
                         <a href="{{ .Permalink }}">{{ $employee }}</a>
                     {{- end -}}

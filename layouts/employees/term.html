@@ -1,5 +1,5 @@
 {{ define "main" }}
-    <h1 id="{{ .Title | urlize }}">{{ .Title | markdownify }}</h1>
+    <h1>{{ .Title }}{{ with (index $.Site.Data.employees .Title).designation }} ({{ . }}){{ end }}</h1>
     {{ .Content }}
 
     {{ .Render "term/entries" }}

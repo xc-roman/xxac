@@ -1,7 +1,7 @@
 <h2>Datasheet</h2>
 
 <dl>
-    <dt>ID</dt>
+    <dt>Identifier</dt>
     <dd>{{ .Title }}</dd>
 
     {{ with $data := index $.Site.Data.employees .Title }}
@@ -17,7 +17,7 @@
 
         {{ with $data.clearance }}
             <dt>Clearance</dt>
-            <dd>{{ . }}</dd>
+            <dd>{{ . }}{{ with (index $.Site.Data.clearance .).name }} ({{ . | lower }}){{ end }}</dd>
         {{ end }}
 
         {{ with $data.species }}

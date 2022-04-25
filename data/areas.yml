@@ -1,0 +1,18 @@
+X:
+  name: Founder
+  description: "Corporate founder"
+E:
+  name: Executive
+  description: "Senior management"
+R:
+  name: Research
+  description: "Research and design"
+S:
+  name: Security
+  description: "Security and corporate forces"
+D:
+  name: Drone
+  description: "Initiated drone unit"
+G:
+  name: General
+  description: "Office worker"

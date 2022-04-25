@@ -1,5 +1,5 @@
-X:
-  name: Founder
+E:
+  name: Executive
   access:
     - TopSecret
     - Secret
@@ -8,8 +8,8 @@ X:
     - Sensitive
     - InConfidence
     - Unclassified
-A:
-  name: Administrative
+M:
+  name: Management
   access:
     - Secret
     - Confidential
@@ -25,19 +25,25 @@ R:
     - Sensitive
     - InConfidence
     - Unclassified
-D:
-  name: Drone
+S:
+  name: Security
   access:
     - Restricted
     - Sensitive
     - InConfidence
     - Unclassified
+D:
+  name: Drone
+  access:
+    - Sensitive
+    - InConfidence
+    - Unclassified
 G:
-  name: Generic
+  name: General
   access:
     - InConfidence
     - Unclassified
-C:
-  name: Civic
+P:
+  name: Public
   access:
     - Unclassified

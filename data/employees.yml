@@ -1,8 +1,18 @@
 X001:
-  clearance: X
+  clearance: E
   designation: Roman
-  title: Founder
-  species: Human
-A117:
-  clearance: A
-  title: Administrative assistant
+  title: Chief executive officer
+  species: H. sapiens
+E117:
+  clearance: E
+  title: Company secretary
+D193:
+  clearance: D
+  designation: Aaron
+  title: Service drone
+  species: H. sapiens
+S022:
+  clearance: E
+  designation: Karev
+  title: Chief security officer
+  species: H. scrofa

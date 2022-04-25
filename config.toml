@@ -25,7 +25,7 @@ enableInlineShortcodes = true
   [params.about]
     title = "Drone Ops Terminal"
     description = "DroneOps 18.04 LTS (drone-term 5.0.4 x86_64)"
-    logo = "favicon.svg"
+    logo = "icon.svg"
 
 [menu]
 
